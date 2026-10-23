@@ -45,5 +45,19 @@ $arrayTalleres = [
         <br>
         <button type="submit" name="Enviar">Enviar</button>
     </form>
+    <?php
+   if(isset($_POST["Enviar"])){
+    try{
+        //RECOGEMOS LAS VARIABLES DEL FORMULARIO CON EL POST
+            $nombre=$_POST["nombre"]??"";
+            $edad=$_POST["edad"]??"";
+            $tipoEntrada=$_POST["tipoEntrada"]??"";
+            $talleresSeleccionados=$_POST['talleres'] ?? [];
+
+    }catch(Exception $e){
+
+    }
+   }
+    ?>
 </body>
 </html>
