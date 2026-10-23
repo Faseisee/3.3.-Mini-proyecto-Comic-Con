@@ -72,8 +72,9 @@ $arrayTalleres = [
         if($edad>=18 && $tipoEntrada==="Infantil"){
             throw new Exception("Para acceder a la entrada infantil debe de ser menor de edad");
         }
-    }catch(Exception $e){
 
+    }catch(Exception $e){
+            echo "<p style='color:red;'>Error: " . $e->getMessage() . "</p>";
     }
    }
     ?>
