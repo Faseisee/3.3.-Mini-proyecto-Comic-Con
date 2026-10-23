@@ -46,6 +46,8 @@ $arrayTalleres = [
         <button type="submit" name="Enviar">Enviar</button>
     </form>
     <?php
+
+   
    if(isset($_POST["Enviar"])){
     try{
         //RECOGEMOS LAS VARIABLES DEL FORMULARIO CON EL POST
@@ -72,7 +74,27 @@ $arrayTalleres = [
         if($edad>=18 && $tipoEntrada==="Infantil"){
             throw new Exception("Para acceder a la entrada infantil debe de ser menor de edad");
         }
-
+        //CREAMOS LAS FUNCIONES calcularPrecioBase y procesarInscripcion
+        function calcularPrecioBase(string $tipoEntrada):int{
+             switch ($tipoEntrada) {
+            case "General":
+                return 30;
+            case "VIP":
+                return 60;
+            case "Infantil":
+                return 10;
+            
+        }}
+          function procesarInscripcion(array $talleresSeleccionados, string $tipoEntrada): int {
+        $total = calcularPrecioBase($tipoEntrada);
+        foreach ($talleresSeleccionados as $precio) {
+            $total += (int)$precio;
+        }
+        return $total;
+    }
+              // CALCULAMOS EL TOTAL
+            $precioFinal = procesarInscripcion($talleresSeleccionados, $tipoEntrada);
+            echo "<p>Bienvenido/a $nombre , el precio total de tu entrada es: $precioFinal €</></p>";
     }catch(Exception $e){
             echo "<p style='color:red;'>Error: " . $e->getMessage() . "</p>";
     }
