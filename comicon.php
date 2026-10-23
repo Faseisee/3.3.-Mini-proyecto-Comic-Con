@@ -54,6 +54,24 @@ $arrayTalleres = [
             $tipoEntrada=$_POST["tipoEntrada"]??"";
             $talleresSeleccionados=$_POST['talleres'] ?? [];
 
+        //VALIDAMOS EL NOMBRE Y LA EDAD
+        if($nombre===""){
+            throw new Exception("No ha introducido ningún nombre");
+        }else{
+             $nombre = htmlspecialchars(trim($nombre), ENT_QUOTES, 'UTF-8');
+        }
+         if (empty($edad) || (int)$edad <= 0) {
+                throw new Exception("La edad debe ser un número entero positivo.");
+            }else{
+                $edad=(int)$edad;
+            }
+        //AHORA HACEMOS LAS COMPROBACIONES PARA LA EDAD
+        if($edad<18 && $tipoEntrada==="VIP"){
+            throw new Exception("Para acceder a la VIP debe ser mayor de edad");
+        }
+        if($edad>=18 && $tipoEntrada==="Infantil"){
+            throw new Exception("Para acceder a la entrada infantil debe de ser menor de edad");
+        }
     }catch(Exception $e){
 
     }
