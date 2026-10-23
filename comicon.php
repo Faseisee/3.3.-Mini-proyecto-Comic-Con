@@ -1,4 +1,9 @@
 <?php
+// CONFIGURACIÓN DE ERRORES Y TIPADO ESTRICTO
+declare(strict_types=1);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 //DECLARAMOS VARIABLES PARA USAR EN EL HTML
 $arrayTalleres = [
     "10" => "Torneo de Videojuegos",
@@ -97,6 +102,8 @@ $arrayTalleres = [
             echo "<p>Bienvenido/a $nombre , el precio total de tu entrada es: $precioFinal €</></p>";
     }catch(Exception $e){
             echo "<p style='color:red;'>Error: " . $e->getMessage() . "</p>";
+    }finally{
+         error_log("[" . date('Y-m-d H:i:s') . "] Procesamiento de inscripción ejecutado.");
     }
    }
     ?>
